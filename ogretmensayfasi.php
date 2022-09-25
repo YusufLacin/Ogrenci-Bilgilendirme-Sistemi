@@ -25,14 +25,12 @@
             $result_select = $conn->query($sql_select);
             if($result_select->num_rows > 0) {
                 echo "<script>alert('Kayıt Zaten Var!')</script>"; 
-            }  else {
+            } else {
                 try {
                     $sql_insert = "INSERT INTO lesson_data (user_id, user_lesson, exam_1, exam_2) VALUES ('$user_id', '$lesson', '$exam_1', '$exam_2')";
                     $result_insert = $conn->query($sql_insert);
                     echo "<script>alert('Kayıt Başarılı')</script>";
-                }
-                catch (Exception $e)
-                {
+                } catch (Exception $e) {
                     echo "<script>alert('Kayıt Başarısız')</script>";
                 }
             }
@@ -82,7 +80,7 @@
                                 <select name="ogrenci" class="form-select form-select-sm table_item" aria-label=".form-select-sm example">
                                     <option selected>Kayıt Seçiniz</option>
                                     <?php
-                                        $sql = "SELECT * FROM user_data WHERE user_role='ogrenci'";
+                                        $sql = "SELECT * FROM user_data WHERE user_role=1";
                                         $result = $conn->query($sql);
                                         if ($result->num_rows > 0)
                                         {

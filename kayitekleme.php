@@ -1,34 +1,25 @@
 <?php
     include "databaseconnect.php";
     $control = true;
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save']))
-    {
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save'])) {
         $postDatas = $_POST;
-        if(strlen($postDatas['user_nick']) == null)
-        {
+        if(strlen($postDatas['user_nick']) == null) {
             $control = false;
             echo "<script>alert('Kullanıcı Adı Kısmını Boş Bırakmayınız!')</script>";
-        }
-        else
-        {
-            if(!preg_match('/^[0-9]{9}+$/', $postDatas['user_nick']))
-            {
+        } else {
+            if(!preg_match('/^[0-9]{9}+$/', $postDatas['user_nick'])) {
                 $control = false;
                 echo "<script>alert('Lütfen Geçerli Bir Kullanıcı Adı Giriniz!')</script>";
             }
         }        
-        if(strlen($postDatas['user_pass']) == null)
-        {
+        if(strlen($postDatas['user_pass']) == null) {
             $control = false;
             echo "<script>alert('Şifre Kısmını Boş Bırakmayınız!')</script>";
         }
-        if($postDatas['status'] == "Kayıt Seçiniz")
-        {
+        if($postDatas['status'] == "Kayıt Seçiniz") {
             $control = false;
             echo "<script>alert('Statü Seçiniz!')</script>";
-        }
-        else
-        {
+        } else {
             switch ($postDatas['status'])
             {
                 case 'Öğrenci':
@@ -44,23 +35,19 @@
                 break;
             }
         }
-        if(strlen($postDatas['user_name']) == null)
-        {
+        if(strlen($postDatas['user_name']) == null) {
             $control = false;
             echo "<script>alert('Ad Kısmını Boş Bırakmayınız!')</script>";
         }
-        if(strlen($postDatas['user_surname']) == null)
-        {
+        if(strlen($postDatas['user_surname']) == null) {
             $control = false;
             echo "<script>alert('Soyad Kısmını Boş Bırakmayınız!')</script>";
         }
-        if($postDatas['college'] == "Kayıt Seçiniz")
-        {
+        if($postDatas['college'] == "Kayıt Seçiniz") {
             $control = false;
             echo "<script>alert('Fakülte Seçiniz!')</script>";
         }
-        if($control)
-        {
+        if($control) {
             $user_id =  $postDatas['user_nick'];
             $user_pass =  $postDatas['user_pass'];
             $status =  $postDatas['status'];
@@ -69,31 +56,23 @@
             $college = $_POST['college'];
             $sql_select = "SELECT * FROM user_data WHERE user_id='$user_id'";
             $result_select = $conn->query($sql_select);
-            if($result_select->num_rows > 0)
-            {
-                echo "<script>alert('Kayıt Zaten Var!')</script>"; 
-            }
-            else
-            {
-                try
-                {
+            if($result_select->num_rows > 0) {
+                echo "<script>alert('Kayıt Zaten Var!')</script>";
+            } else {
+                try {
                     $sql_insert = "INSERT INTO user_data (user_id, user_pass, user_role, user_name, user_surname, user_college) VALUES ('$user_id', '$user_pass', '$status', '$user_name', '$user_surname', '$college')";
                     $result_insert = $conn->query($sql_insert);
                     echo "<script>alert('Kayıt Başarılı')</script>";
-                }
-                catch (Exception $e)
-                {
+                } catch (Exception $e) {
                     echo "<script>alert('Kayıt Başarısız')</script>";
                 }
             }
         }
     }
-    function exit_function()
-    {
+    function exit_function() {
         header("Location:index.php");
     }
-    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['exit']))
-    {
+    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['exit'])) {
         exit_function();
     }
 ?>
@@ -106,12 +85,12 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <link rel="stylesheet" href="styles/style.css">
-    <title>Yönetici Paneli</title>
+    <title>Kayıt Ekleme Sayfası</title>
 </head>
 <body class="body_ogretmen">
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-11"><h3 class="mb-3 text-danger">Yönetici Paneli</h3></div>
+            <div class="col-md-11"><h3 class="mb-3 text-danger">Kayıt Ekleme Paneli</h3></div>
             <div class="col-md-1"><form method="post"><input type="submit" class="btn btn-secondary" name="exit" value="Çıkış" /></form></div>
         </div>
         <div class="row">

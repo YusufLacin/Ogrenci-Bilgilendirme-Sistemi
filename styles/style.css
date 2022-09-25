@@ -1,33 +1,35 @@
-.body_index
-{
+.body_index{
     background-color:#591bb5;
 }
-.giris_panel
-{    
+
+.giris_panel{    
     background-color:#6c757d;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
-.input-error::placeholder
-{
+
+.input-error::placeholder{
     color: red;
 }
-body
-{
+
+body{
     background-color: #ced4da;
 }
-.table_item
-{
+
+.table_item{
     text-align: center;
     background-color: #9e3737;
     color: wheat;
 }
-.save_button
-{
+
+.save_button{
     background-color:#2be244;
 }
-th, td
-{
+th, td{
     text-align: center;
+}
+
+.link_button{
+    background-color: aqua;
 }

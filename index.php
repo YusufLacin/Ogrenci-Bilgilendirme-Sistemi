@@ -12,9 +12,9 @@
                 if($password == $row["user_pass"]) {
                     session_start();
                     $_SESSION['nick'] = $postDatas['number'];
-                    if($row["user_role"] == "ogrenci") {
+                    if($row["user_role"] == 1) {
                         header("Location:ogrencisayfasi.php");
-                    } elseif($row["user_role"] == "ogretmen") {
+                    } elseif($row["user_role"] == 2) {
                         header("Location:ogretmensayfasi.php");
                     } else {
                         header("Location:yoneticisayfasi.php");
