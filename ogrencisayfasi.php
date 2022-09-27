@@ -75,47 +75,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if(isset($_SESSION['nick'])){?>
+                    <?php if(isset($_SESSION['nick'])){ $sql = "SELECT * FROM lesson"; $result = $conn->query($sql); if ($result->num_rows > 0){ $boyut = $result->num_rows; for ($sayac = 0; $sayac < $boyut; $sayac++){ if($row = $result->fetch_assoc()){ ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>MBPR 247-Veri Tabanı Yönetimi</td>
-                            <td>3</td>
+                            <th scope="row"><?php echo $sayac + 1;?></th>
+                            <td><?php echo $row['lesson'];?></td>
+                            <td><?php echo $row['credit'];?></td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>MBPR 249-Nesne Tabanlı Programlama</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>MBPR 251-Web Uygulama ve Geliştirme</td>
-                            <td>3</td>
-                        </tr>
-                            <th scope="row">4</th>
-                            <td>MBPR 253-Görsel Programlama I</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>MBPR 262-İngilizce</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>MBPR 265-Türk Dili</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>MBPR 268-İnkılap Tarihi</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>MBPR 261-Seçmeli Ders</td>
-                            <td>2</td>
-                        </tr>
-                    <?php }?>
+                    <?php }}}}?>
                     </tbody>
                 </table>
             </div>

@@ -17,7 +17,7 @@
                     } elseif($row["user_role"] == 2) {
                         header("Location:ogretmensayfasi.php");
                     } else {
-                        header("Location:yoneticisayfasi.php");
+                        header("Location:yoneticipaneli.php");
                     }
                 } else {
                     $errors['password'] = 'Şifre Yanlış!';

@@ -23,13 +23,13 @@
             switch ($postDatas['status'])
             {
                 case 'Öğrenci':
-                    $postDatas['status'] = "ogrenci";
+                    $postDatas['status'] = 1;
                 break;
                 case 'Öğretmen':
-                    $postDatas['status'] = "ogretmen";
+                    $postDatas['status'] = 2;
                 break;
                 case 'Yönetici':
-                    $postDatas['status'] = "yonetici";
+                    $postDatas['status'] = 3;
                 break;                
                 default:
                 break;

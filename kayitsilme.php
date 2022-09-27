@@ -9,16 +9,14 @@
             echo "<script>alert('İşlem Yapmak İstediğiniz Öğrenciyi Seçiniz.')</script>";
         }
         if($control) {
-            $user_id =  $postDatas['user_nick'];
+            $user_id =  $postDatas['ogrenci'];
             $sql_select = "SELECT * FROM user_data WHERE user_id='$user_id'";
             $result_select = $conn->query($sql_select);
-            if($result_select->num_rows > 0) {
-                echo "<script>alert('Kayıt Zaten Var!')</script>";
-            } else {
+            if($result_select->num_rows > 0) {            
                 try {
-                    $sql_insert = "DELETE FROM user_data WHERE $user_id = 1";
-                    $result_insert = $conn->query($sql_insert);
-                    echo "<script>alert('İşlem Başarılı')</script>";    
+                    $sql_insert = "DELETE FROM user_data WHERE user_id = '$user_id'";
+                    $conn->query($sql_insert);
+                    echo "<script>alert('İşlem Başarılı')</script>";
                 } catch (Exception $e) {
                     echo "<script>alert('İşlem Başarısız')</script>";
                 }
@@ -53,6 +51,7 @@
             <table class="table table-dark table-bordered table-striped" style="text-align: center;">
                 <thead>
                     <th scope="cow">Kullanıcı Adı</th>
+                    <th scope="cow">#</th>
                 </thead>
                 <tbody>
                     <?php if(isset($_SESSION['nick'])){?>
@@ -62,7 +61,7 @@
                                     <select name="ogrenci" class="form-select form-select-sm table_item" aria-label=".form-select-sm example">
                                         <option selected>Kayıt Seçiniz</option>
                                         <?php
-                                            $sql = "SELECT * FROM user_data WHERE user_role=1";
+                                            $sql = "SELECT * FROM user_data WHERE user_role=1 or user_role=2";
                                             $result = $conn->query($sql);
                                             if ($result->num_rows > 0) {
                                                 while($row = $result->fetch_assoc()) {

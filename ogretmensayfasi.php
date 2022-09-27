@@ -97,14 +97,19 @@
                             <td>
                                 <select name="ders" class="form-select form-select-sm table_item" aria-label=".form-select-sm example">
                                     <option selected>Kayıt Seçiniz</option>
-                                    <option>MBPR 247-Veri Tabanı Yönetimi</option>
-                                    <option>MBPR 249-Nesne Tabanlı Programlama</option>
-                                    <option>MBPR 251-Web Uygulama ve Geliştirme</option>
-                                    <option>MBPR 253-Görsel Programlama I</option>
-                                    <option>MBPR 262-İngilizce</option>
-                                    <option>MBPR 265-Türk Dili</option>
-                                    <option>MBPR 268-İnkılap Tarihi</option>
-                                    <option>MBPR 261-Seçmeli Ders</option>
+                                    <?php
+                                        $sql = "SELECT * FROM lesson";
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows > 0)
+                                        {
+                                            while($row = $result->fetch_assoc())
+                                            {
+                                                ?>
+                                                <option><?php echo $row['lesson'];?></option>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
                                 </select>
                             </td>
                             <td><input type="text" name="exam_1" class="table_item"></td>
